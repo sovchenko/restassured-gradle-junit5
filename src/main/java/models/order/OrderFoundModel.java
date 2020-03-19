@@ -1,41 +1,48 @@
 package models.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-public class OrderFoundModel extends OrderModel{
+@ToString
+@EqualsAndHashCode
+public class OrderFoundModel {
 
     @JsonProperty("petId")
-    private int petId;
+    private final int petId;
 
     @JsonProperty("quantity")
-    private int quantity;
+    private final int quantity;
 
     @JsonProperty("id")
-    private int id;
+    private final int id;
 
     @JsonProperty("shipDate")
-    private String shipDate;
+    private final String shipDate;
 
-    @JsonProperty("complete")
-    private boolean complete;
 
     @JsonProperty("status")
-    private String status;
+    private final String status;
 
-    @Override
-    public String toString() {
-        return
-                "Order Model {" +
-                        "petId = '" + petId + '\'' +
-                        ",quantity = '" + quantity + '\'' +
-                        ",id = '" + id + '\'' +
-                        ",shipDate = '" + shipDate + '\'' +
-                        ",complete = '" + complete + '\'' +
-                        ",status = '" + status + '\'' +
-                        "}";
+    @JsonProperty("complete")
+    private final boolean complete;
+
+    public OrderFoundModel() {
+        this.complete = false;
+        this.id = 0;
+        this.petId = 0;
+        this.quantity = 0;
+        this.shipDate = "0";
+        this.status = "null";
+    }
+
+    public OrderFoundModel(int petId, int quantity, int id, String shipDate, String status, boolean complete) {
+        this.petId = petId;
+        this.quantity = quantity;
+        this.id = id;
+        this.shipDate = shipDate;
+        this.status = status;
+        this.complete = complete;
     }
 }

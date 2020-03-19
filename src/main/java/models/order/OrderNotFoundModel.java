@@ -1,11 +1,16 @@
 package models.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.annotation.Generated;
-
-@Generated("com.robohorse.robopojogenerator")
-public class OrderNotFoundModel extends OrderModel {
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+public class OrderNotFoundModel {
 
     @JsonProperty("code")
     private int code;
@@ -15,14 +20,4 @@ public class OrderNotFoundModel extends OrderModel {
 
     @JsonProperty("message")
     private String message;
-
-    @Override
-    public String toString() {
-        return
-                "OrderNotFoundModel {" +
-                        "code = '" + code + '\'' +
-                        ",type = '" + type + '\'' +
-                        ",message = '" + message + '\'' +
-                        "}";
-    }
 }

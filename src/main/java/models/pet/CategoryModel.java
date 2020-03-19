@@ -2,6 +2,7 @@ package models.pet;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 public class CategoryModel {
 
     @JsonProperty("id")
@@ -16,13 +18,4 @@ public class CategoryModel {
 
     @JsonProperty("name")
     private String name;
-
-    @Override
-    public String toString() {
-        return
-                "Category{" +
-                        "name = '" + name + '\'' +
-                        ",id = '" + id + '\'' +
-                        "}";
-    }
 }

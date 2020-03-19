@@ -10,7 +10,6 @@ import java.util.List;
 @JsonPropertyOrder({"id", "category", "name", "photoUrls", "tags", "status"})
 @Getter
 @Setter
-@Builder
 @ToString
 @EqualsAndHashCode
 public class PetModel {
@@ -33,17 +32,7 @@ public class PetModel {
     @JsonProperty("status")
     private String status;
 
-    @Override
-    public String toString() {
-        return
-                "PetModel {" +
-                        "photoUrls = '" + photoUrls + '\'' +
-                        ",name = '" + name + '\'' +
-                        ",id = '" + id + '\'' +
-                        ",category = '" + category + '\'' +
-                        ",tags = '" + tags + '\'' +
-                        ",status = '" + status + '\'' +
-                        "}";
-    }
+    public PetModel(){
 
+    }
 }
