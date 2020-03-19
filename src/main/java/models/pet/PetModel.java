@@ -35,4 +35,13 @@ public class PetModel {
     public PetModel(){
 
     }
+
+    public PetModel(int id, CategoryModel category, String name, List<String> photoUrls, List<TagModel> tags, String status) {
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.photoUrls = photoUrls;
+        this.tags = tags;
+        this.status = status;
+    }
 }

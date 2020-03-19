@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 public class OrderTest extends BaseTest{
 
     @Test
-    @DisplayName("first test")
+    @DisplayName("Verify that order can be added")
     public void verifyThatOrderCanBeAdded(){
         OrderFoundModel orderModel = new OrderFoundModel(9,2, 8,"2020-02-19T20:36:13.283Z","placed",true);
         OrderController controller = new OrderController();
@@ -24,25 +24,4 @@ public class OrderTest extends BaseTest{
         assertThat(addedOrder.getQuantity()).isEqualTo(2);
     }
 
-    @Test
-    @DisplayName("This test checks whether method is good")
-    public void testPostByIdMethod(){
-        PetController controller = new PetController();
-        controller.updateNameAndStatusOfExistingPetById(10,"Luigi", "CasualGuy");
-    }
-
-    @Test
-    @DisplayName("this is third test brodas")
-    public void someTest(){
-        PetController controller = new PetController();
-        List<PetModel> soldPets = null;
-        try {
-            soldPets = controller.getAllPetsByStatus("sold");
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        for(PetModel pet : soldPets){
-            assertThat(pet.getStatus()).isEqualTo("sold");
-        }
-    }
 }

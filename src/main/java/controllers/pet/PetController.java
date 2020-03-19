@@ -68,14 +68,14 @@ public class PetController {
 
     public List<PetModel> getAllPetsByStatus(String status) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        String jsonResponse =  given(defaultSpecification)
-                .get()
+        String jsonResponse =  given(defaultSpecification.param("status",status))
+                .get("/findByStatus")
                 .then()
                 .extract()
                 .body()
                 .asString();
 
-        List<PetModel> allPets = mapper.readValue(jsonResponse, new TypeReference<List<PetModel>>(){});
+        List<PetModel> allPets = mapper.readValue(jsonResponse, new TypeReference<List<PetModel>>() {});
         return allPets;
     }
 }

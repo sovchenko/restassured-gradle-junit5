@@ -18,4 +18,9 @@ public class CategoryModel {
 
     @JsonProperty("name")
     private String name;
+
+    public CategoryModel(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
