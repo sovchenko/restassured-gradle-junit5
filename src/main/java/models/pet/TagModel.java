@@ -18,4 +18,11 @@ public class TagModel {
     @JsonProperty("name")
     private String name;
 
+    public TagModel(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public TagModel() {
+    }
 }

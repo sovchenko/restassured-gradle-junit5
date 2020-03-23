@@ -1,14 +1,10 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
 import controllers.order.OrderController;
-import controllers.pet.PetController;
 import models.order.OrderFoundModel;
-import models.pet.PetModel;
+import models.order.OrderNotFoundModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderTest extends BaseTest{
 
@@ -29,7 +25,18 @@ public class OrderTest extends BaseTest{
     public void verifyThatOrderCanBeRetrieved(){
         OrderController controller = new OrderController();
         OrderFoundModel orderFoundModel = controller.getOrderById(8);
+        assertThat(orderFoundModel.getStatus()).isEqualTo("placed");
+        assertThat(orderFoundModel.getQuantity()).isEqualTo(2);
         
     }
 
+    @Test
+    @DisplayName("Verify that order can be deleted")
+    public void verifyThatOrderCanBeDeleted(){
+        OrderController orderController = new OrderController();
+        orderController.deleteOrderWithCertainId(8);
+        OrderNotFoundModel deletedOrder = orderController.getDeletedOrderById(8);
+        assertThat(deletedOrder.getMessage()).isEqualTo("Order not found");
+
+    }
 }

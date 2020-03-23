@@ -11,12 +11,34 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PetTest {
+public class PetTest extends BaseTest{
+
+    @Test
+    @DisplayName("Verify that pet can be added to the store")
+    public void verifyThatPetCanBeAddedToTheStore(){
+        CategoryModel categoryModel = new CategoryModel(10, "mammal");
+        List<String> photos = new ArrayList<>();
+        photos.add("https://www.myphoto.com");
+        List<TagModel> tags = new ArrayList<>();
+        tags.add(new TagModel(10, "Some Tag"));
+        PetModel dog = new PetModel(4,categoryModel,"mops", photos,tags,"healthy");
+
+        PetController controller = new PetController();
+        controller.addPet(dog);
+        PetModel retrievedDog = controller.getPetById(4);
+        assertThat(retrievedDog).isEqualTo(dog);
+    }
+
+
+
     @Test
     @DisplayName("This test checks whether method is good")
-    public void testPostByIdMethod(){
+    public void verifyThatPetNameAndStatusCanBeUpdated(){
         PetController controller = new PetController();
-        controller.updateNameAndStatusOfExistingPetById(10,"Luigi", "CasualGuy");
+        controller.updateNameAndStatusOfExistingPetById(4,"kangoroo", "newone");
+        PetModel pet = controller.getPetById(4);
+        assertThat(pet.getStatus()).isEqualTo("newone");
+        assertThat(pet.getName()).isEqualTo("kangoroo");
     }
 
     @Test
@@ -31,17 +53,11 @@ public class PetTest {
     }
 
     @Test
-    @DisplayName("Verify that pet can be added to the store")
-    public void verifyThatPetCanBeAddedToTheStore(){
-        List<String> photoURLs = new ArrayList<>();
-        photoURLs.add("some photo");
-        List<TagModel> tags = new ArrayList<>();
-
-        PetModel pet = new PetModel(10, new CategoryModel(10,"mammals"),"Supersonic",photoURLs,tags,"available");
+    @DisplayName("Verify that pets can be deleted")
+    public void verifyThatPetsCanBeDeleted(){
         PetController controller = new PetController();
-        controller.addPet(pet);
+        controller.deletePetById(4);
 
-        PetModel retrievedPet = controller.getPetById(10);
-        assertThat(retrievedPet).isEqualTo(pet);
     }
+
 }

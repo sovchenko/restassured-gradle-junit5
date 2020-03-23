@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import models.order.OrderFoundModel;
+import models.order.OrderNotFoundModel;
 
 import static  io.restassured.RestAssured.*;
 import static java.lang.String.*;
@@ -28,6 +29,12 @@ public class OrderController {
         Response response = given(defaultRequestSpecification)
                 .get(valueOf(id));
         return response.as(OrderFoundModel.class);
+    }
+
+    public OrderNotFoundModel getDeletedOrderById(int id){
+        return given(defaultRequestSpecification)
+                .get(valueOf(id))
+                .as(OrderNotFoundModel.class);
     }
 
     public void addOrder(OrderFoundModel model){

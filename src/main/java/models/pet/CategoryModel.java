@@ -23,4 +23,7 @@ public class CategoryModel {
         this.id = id;
         this.name = name;
     }
+
+    public CategoryModel() {
+    }
 }
