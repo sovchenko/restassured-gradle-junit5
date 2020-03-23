@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class PetModel {
+public class PetModel extends AbstractPetModel{
 
     @JsonProperty("id")
     private int id;

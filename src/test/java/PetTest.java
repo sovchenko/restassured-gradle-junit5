@@ -1,8 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import controllers.pet.PetController;
-import models.pet.CategoryModel;
-import models.pet.PetModel;
-import models.pet.TagModel;
+import models.pet.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,11 +19,11 @@ public class PetTest extends BaseTest{
         photos.add("https://www.myphoto.com");
         List<TagModel> tags = new ArrayList<>();
         tags.add(new TagModel(10, "Some Tag"));
-        PetModel dog = new PetModel(4,categoryModel,"mops", photos,tags,"healthy");
+        AbstractPetModel dog = new PetModel(4,categoryModel,"mops", photos,tags,"healthy");
 
         PetController controller = new PetController();
         controller.addPet(dog);
-        PetModel retrievedDog = controller.getPetById(4);
+        AbstractPetModel retrievedDog = controller.getPetById(4);
         assertThat(retrievedDog).isEqualTo(dog);
     }
 
@@ -35,17 +33,17 @@ public class PetTest extends BaseTest{
     @DisplayName("This test checks whether method is good")
     public void verifyThatPetNameAndStatusCanBeUpdated(){
         PetController controller = new PetController();
-        controller.updateNameAndStatusOfExistingPetById(4,"kangoroo", "newone");
-        PetModel pet = controller.getPetById(4);
-        assertThat(pet.getStatus()).isEqualTo("newone");
-        assertThat(pet.getName()).isEqualTo("kangoroo");
+        controller.updateNameAndStatusOfExistingPetById(4,"kangaroo", "new one");
+        PetModel pet = (PetModel) controller.getPetById(4);
+        assertThat(pet.getStatus()).isEqualTo("new one");
+        assertThat(pet.getName()).isEqualTo("kangaroo");
     }
 
     @Test
     @DisplayName("Verify that pets can be retrieved by their status")
     public void verifyThatPetsCanBeRetrievedByTheStatus() throws JsonProcessingException {
         PetController controller = new PetController();
-        List<PetModel> soldPets = soldPets = controller.getAllPetsByStatus("sold");
+        List<PetModel> soldPets = controller.getAllPetsByStatus("sold");
 
         for(PetModel pet : soldPets){
             assertThat(pet.getStatus()).isEqualTo("sold");
@@ -57,7 +55,8 @@ public class PetTest extends BaseTest{
     public void verifyThatPetsCanBeDeleted(){
         PetController controller = new PetController();
         controller.deletePetById(4);
-
+        PetNotFoundModel deletedPet = (PetNotFoundModel) controller.getPetById(4);
+        assertThat(deletedPet.getMessage()).isEqualTo("Pet not found");
     }
 
 }

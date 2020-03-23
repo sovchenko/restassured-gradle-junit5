@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class PetNotFound {
+public class PetNotFoundModel extends AbstractPetModel{
 
 	@JsonProperty("code")
 	private int code;
@@ -21,13 +21,13 @@ public class PetNotFound {
 	@JsonProperty("message")
 	private String message;
 
-	public PetNotFound(int code, String type, String message) {
+	public PetNotFoundModel(int code, String type, String message) {
 		this.code = code;
 		this.type = type;
 		this.message = message;
 	}
 
-	public PetNotFound() {
+	public PetNotFoundModel() {
 
 	}
 }
