@@ -24,4 +24,12 @@ public class OrderTest extends BaseTest{
         assertThat(addedOrder.getQuantity()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("Verify that order can be retrieved")
+    public void verifyThatOrderCanBeRetrieved(){
+        OrderController controller = new OrderController();
+        OrderFoundModel orderFoundModel = controller.getOrderById(8);
+        
+    }
+
 }
