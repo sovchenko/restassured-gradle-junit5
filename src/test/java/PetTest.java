@@ -39,16 +39,16 @@ public class PetTest extends BaseTest{
         assertThat(pet.getName()).isEqualTo("kangaroo");
     }
 
-    @Test
-    @DisplayName("Verify that pets can be retrieved by their status")
-    public void verifyThatPetsCanBeRetrievedByTheStatus() throws JsonProcessingException {
-        PetController controller = new PetController();
-        List<PetModel> soldPets = controller.getAllPetsByStatus("sold");
-
-        for(PetModel pet : soldPets){
-            assertThat(pet.getStatus()).isEqualTo("sold");
-        }
-    }
+//    @Test
+//    @DisplayName("Verify that pets can be retrieved by their status")
+//    public void verifyThatPetsCanBeRetrievedByTheStatus() throws JsonProcessingException {
+//        PetController controller = new PetController();
+//        List<PetModel> soldPets = controller.getAllPetsByStatus("sold");
+//
+//        for(PetModel pet : soldPets){
+//            assertThat(pet.getStatus()).isEqualTo("sold");
+//        }
+//    }
 
     @Test
     @DisplayName("Verify that pets can be deleted")
