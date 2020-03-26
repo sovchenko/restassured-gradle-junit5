@@ -2,6 +2,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import controllers.pet.PetController;
 import models.pet.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class PetTest extends BaseTest{
 
     @Test
     @DisplayName("Verify that pet can be added to the store")
+    @Order(1)
     public void verifyThatPetCanBeAddedToTheStore(){
         CategoryModel categoryModel = new CategoryModel(10, "mammal");
         List<String> photos = new ArrayList<>();
@@ -31,6 +33,7 @@ public class PetTest extends BaseTest{
 
     @Test
     @DisplayName("This test checks whether method is good")
+    @Order(2)
     public void verifyThatPetNameAndStatusCanBeUpdated(){
         PetController controller = new PetController();
         controller.updateNameAndStatusOfExistingPetById(4,"kangaroo", "new one");
@@ -52,6 +55,7 @@ public class PetTest extends BaseTest{
 
     @Test
     @DisplayName("Verify that pets can be deleted")
+    @Order(3)
     public void verifyThatPetsCanBeDeleted(){
         PetController controller = new PetController();
         controller.deletePetById(4);
