@@ -11,4 +11,6 @@ public class BaseTest {
         baseURI = Endpoint.baseURI;
         defaultParser = Parser.JSON;
     }
+
+
 }
